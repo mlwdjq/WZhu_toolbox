@@ -1,5 +1,5 @@
 function uimwrite(I)
-%%Ğ´ÈëÍ¼Æ¬º¯Êı
+%% save image
 global old_pw
 if old_pw==0
     old_pw=[];
