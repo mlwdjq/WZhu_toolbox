@@ -6,8 +6,8 @@ function [R, T, A, Rp, Tp, Rs, Ts] = ...
     getFilmRTA(n0,n1,n2,thickness_nm,lambda_nm,theta_rad)
 
 th0 = theta_rad;
-th1 = asin(real(n0).*sin(th0)./real(n1));
-th2 = asin(real(n1).*sin(th1)./real(n2));
+th1 = asin((n0).*sin(th0)./(n1));
+th2 = asin((n1).*sin(th1)./(n2));
 Rph = 2*pi./lambda_nm.*(n1.*thickness_nm./cos(th1) - n0.*thickness_nm.*tan(th1).*sin(th0));
 Tph = 2*pi./lambda_nm.*(n1.*thickness_nm./cos(th1) - n2.*thickness_nm.*(tan(th0) - tan(th1)).*sin(th2));
 
@@ -30,7 +30,7 @@ A = 1 - R - T;
 
 % fresnel equation
 function [rs,rp,ts,tp] = fresnel(n0,n1,th0)
-th1 = asin(real(n0).*sin(th0)./real(n1));
+th1 = asin((n0).*sin(th0)./(n1));
 rs = (n0.*cos(th0) - n1.*cos(th1))./(n0.*cos(th0) + n1.*cos(th1));
 rp = (n1.*cos(th0) - n0.*cos(th1))./(n1.*cos(th0) + n0.*cos(th1));
 ts = 1 + rs;
